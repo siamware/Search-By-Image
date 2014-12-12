@@ -11,12 +11,6 @@
 // @grant       GM_setValue
 // @grant       GM_openInTab
 // @grant       GM_registerMenuCommand
-// @updateURL   https://github.com/ccloli/Search-By-Image/raw/master/search-by-image.user.js
-// @downloadURL https://github.com/ccloli/Search-By-Image/raw/master/search-by-image.user.js
-// @updateURL   https://greasyfork.org/scripts/2998/code.meta.js
-// @downloadURL https://greasyfork.org/scripts/2998/code.user.js
-// @updateURL   http://ext.ccloli.com/search-by-image/search-by-image.user.js
-// @downloadURL http://ext.ccloli.com/search-by-image/search-by-image.user.js
 // @namespace   http://ext.ccloli.com
 // ==/UserScript==
 
@@ -33,7 +27,7 @@ var default_setting={
 		"Bing":"http://cn.bing.com/images/searchbyimage?FORM=IRSBIQ&cbir=sbi&imgurl={%s}",
 		"TinEye":"http://www.tineye.com/search?url={%s}",
 		//"Cydral":"http://www.cydral.com/#url={%s}",
-		"Яндекс (Yandex)":"http://yandex.ru/images/search?rpt=imageview&img_url={%s}",
+		"Yandex":"http://yandex.ru/images/search?rpt=imageview&img_url={%s}",
 		"Sogou":"http://pic.sogou.com/ris?query={%s}",
 		"360 ShiTu":"http://st.so.com/stu?imgurl={%s}",
 		"SauceNAO":"http://saucenao.com/search.php?db=999&url={%s}",
@@ -100,14 +94,14 @@ function create_panel(){
 	search_top.getElementsByTagName('input')[0].onchange=function(){reader.readAsDataURL(this.files[0]);};
 	search_panel.ondragenter=function(event){
 		event.preventDefault();
-		search_top.getElementsByTagName('label')[0].textContent='拖拽文件至此';
+		search_top.getElementsByTagName('label')[0].textContent='11111';
 	};
 	search_panel.ondragleave=function(event){
 		event.preventDefault();
-		search_top.getElementsByTagName('label')[0].textContent='上传图片并搜索';
+		search_top.getElementsByTagName('label')[0].textContent='22222';
 	};
 	search_panel.ondragover=function(event){
-		search_top.getElementsByTagName('label')[0].textContent='拖拽文件至此';
+		search_top.getElementsByTagName('label')[0].textContent='33333';
 		event.preventDefault();
 	};
 	search_panel.ondrop=function(event){
@@ -117,7 +111,7 @@ function create_panel(){
 		if(files[files.length-1].type.indexOf('image')>=0)reader.readAsDataURL(files[files.length-1]);
 	};
 	search_top.getElementsByTagName('progress')[0].onclick=function(){
-		if(xhr.readyState!=0&&confirm('确认终止上传文件吗？')==true){
+		if(xhr.readyState!=0&&confirm('4444444？')==true){
 			xhr.abort();
 			search_panel.getElementsByClassName('search_top_url')[0].style.marginTop='-24px';
 		}
@@ -152,7 +146,7 @@ function call_setting(){
 	var setting_item=document.createElement('div');
 	setting_item.style.cssText='width:100%;height:24px;line-height:24px;margin:1px 0';
 	setting_item.className='image-search-setting-title';
-	setting_item.innerHTML='<div style="text-align:center;display:inline-block;width:30px">多搜</div><div style="width:100px;text-align:center;display:inline-block">名称</div><div style="width:350px;text-align:center;display:inline-block">地址（图片地址以 {%s} 代替）</div><div style="width:20px;display:inline-block"></div>';
+	setting_item.innerHTML='<div style="text-align:center;display:inline-block;width:30px">55</div><div style="width:100px;text-align:center;display:inline-block">66</div><div style="width:350px;text-align:center;display:inline-block">7777 {%s} 88）</div><div style="width:20px;display:inline-block"></div>';
 	setting_panel.appendChild(setting_item);
 	for(var i in setting.site_list){
 		var setting_item_child=setting_item.cloneNode(true);
@@ -234,12 +228,12 @@ function upload_file(data){
 			if(xhr.status==200){
 				img_src=xhr.responseText;
 				search_panel.getElementsByClassName('search_top_url')[0].style.marginTop='0px';
-				search_panel.getElementsByClassName('search_top_url')[0].textContent='上传完成！';
+				search_panel.getElementsByClassName('search_top_url')[0].textContent='9999！';
 			}
 		}
 	};
 	xhr.upload.onprogress=function(event){search_panel.getElementsByTagName('progress')[0].value=event.loaded/event.total;};
-	xhr.onerror=function(){alert('上传失败！');};
+	xhr.onerror=function(){alert('0000！');};
 	var form=new FormData();
 	xhr.open('POST',server_url);
 	form.append('imgdata',data);
